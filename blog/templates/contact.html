@@ -1,0 +1,113 @@
+{% extends 'base_multilang.html' %}
+{% load static %}
+{% load i18n  %}
+
+{% block content %}
+
+
+   <style>
+            *{
+        padding: 0;
+        margin: 0;
+    }
+    .hero{
+        max-width: 100%;
+        height: 100vh;
+        background-color: #292828;
+        background-color: rgba(#000,#000,#000, 0.1);
+        filter: grayscale(100%);
+        display: flex;
+        /* padding: 0 100px; */
+        /* align-items: center; */
+        /* flex-direction: column; */
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* justify-content: center; */
+        background-position: center;
+        position: relative;
+        margin-left:200px;
+    }
+    .hero h1{
+        font-size: 18px;
+        color: #FFFFFF;
+        font-weight: 800;
+    }
+    .hero button{
+        width: 200px;
+        height: 40px;
+        border: 1px solid white;
+        background-color: #FFFFFF;
+        transition: all 0.2s linear;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 4px;
+        margin-top: 30px;
+    }
+    .hero button:hover{
+        background-color: white;
+        color: black;
+    }
+    .shadow{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #494848;
+        opacity: 1;
+    }
+    .text{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        padding: 0 100px;
+    }
+
+
+
+
+    </style>
+
+<div>
+    <div class="hero">
+            <!-- <h1>Mi sozdayom budushee</h1>
+            <button>Discover</button> -->
+            <div class="shadow">
+
+            </div>
+            <div class="text">
+                <br>
+                <h1>Contact</h1>
+                <br>
+                {% for data in contact_data %}
+                <h1>{{ data.title }}</h1>
+                <br>
+                <p></p>
+                <h1>Store Address:</h1>
+                <h5>{{ data.store_address }}</h5>
+                <br>
+                <h1>Manufacturer's address:</h1>
+                <h5>{{ data.manufacturer_address }}</h5>
+                <br>
+                <h1>Phone number:</h1>
+                <h5>{{ data.phone_number1 }}</h5>
+                <br>
+                <h1>Phone number:</h1>
+                <h5>{{ data.phone_number2 }}</h5>
+                <br>
+                <h1>E-mail:</h1>
+                <h5>{{ data.email }}</h5>
+                {% endfor %}
+
+            </div>
+    </div>
+</div>
+{% endblock %}

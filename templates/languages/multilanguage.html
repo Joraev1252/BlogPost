@@ -1,0 +1,28 @@
+{% load static %}
+{% load i18n %}
+<style>
+    form select{
+        border:none;
+        outline:none;
+        background-color: white;
+        font-size:20px;
+        padding:10px;
+        font-weight: 600;
+      }
+</style>
+<br>
+<form class="d-flex justify-content-end align-items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}">
+    <select name="language" onchange="this.form.submit()" class="lang-select" style="text-transform: capitalize">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+
+        {% for language in languages %}
+            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %} style="text-transform: capitalize">
+                {{ language.name_local }}
+            </option>
+        {% endfor %}
+
+    </select>
+</form>

@@ -1,0 +1,102 @@
+{% extends 'base_multilang.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+   <style>
+            *{
+        padding: 0;
+        margin: 0;
+    }
+    .hero{
+        max-width: 100%;
+        height: 100vh;
+        background-color: #292828;
+        background-color: rgba(#000,#000,#000, 0.1);
+<!--        filter: grayscale(100%);-->
+        display: flex;
+        /* padding: 0 100px; */
+        /* align-items: center; */
+        /* flex-direction: column; */
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* justify-content: center; */
+        background-position: center;
+        position: relative;
+        margin-left:200px;
+    }
+    .hero h1{
+        font-size: 18px;
+        color: #FFFFFF;
+        font-weight: 800;
+    }
+    .hero img{
+    height:500px;
+    width:50%;
+<!--    object-fit:cover;-->
+    }
+    .hero button{
+        width: 200px;
+        height: 40px;
+        border: 1px solid white;
+        background-color: #FFFFFF;
+        transition: all 0.2s linear;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 4px;
+        margin-top: 30px;
+    }
+    .hero button:hover{
+        background-color: white;
+        color: black;
+    }
+    .shadow{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #494848;
+        opacity: 1;
+
+    }
+    .text{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        padding: 0 100px;
+    }
+    </style>
+
+    <div class="hero">
+            <!-- <h1>Mi sozdayom budushee</h1>
+            <button>Discover</button> -->
+            <div class="shadow">
+
+            </div>
+
+            <div class="text">
+                <br>
+                <p></p>
+                <h1>{{ news_detail.title }}</h1>
+                <br>
+                <img src='{{ news_detail.imageURL }}' alt="">
+                <br>
+              <div class="sometext">
+                <h3>{{ news_detail.body }}</h3>
+
+               <p align="right"><a href="{% url 'blog:edit_news' news_detail.pk %}" type="button" class="btn btn-md btn-outline-secondary">Edit</a> <a href="{% url 'blog:delete_news' news_detail.pk %}" type="button" class="btn btn-md btn-outline-secondary">Delete</a></p>
+
+              </div>
+
+            </div>
+    </div>
+{% endblock %}

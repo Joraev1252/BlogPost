@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+            *{
+        padding: 0;
+        margin: 0;
+    }
+    .hero{
+        max-width: 100%;
+        height: 100vh;
+        background-image:url("../../static/hero-bg.jpg");
+        background-color: rgba(#000,#000,#000, 0.1);
+        filter: grayscale(100%);
+        display: flex;
+        /* padding: 0 100px; */
+        /* align-items: center; */
+        /* flex-direction: column; */
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* justify-content: center; */
+        background-position: center;
+        position: relative;
+        margin-left:200px;
+    }
+    .hero h1{
+        font-size: 70px;
+        color: white;
+        font-weight: 800;
+        text-shadow: 3px 3px green;
+        font-family: sans-serif;
+    }
+    .hero button{
+        width: 200px;
+        height: 40px;
+        border: 1px solid white;
+        background-color: transparent;
+        transition: all 0.2s linear;
+
+        letter-spacing: 4px;
+        margin-top: 30px;
+    }
+    .hero button:hover{
+        background-color: white;
+        color: black;
+    }
+    .shadow{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: black;
+        opacity: 0.7;
+    }
+    .text{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        padding: 0 100px;
+    }
+
+    .text button a{
+     color: white;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration:none;
+
+    }
+ .text button a:hover{
+ color:black;
+ }
+    </style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="hero">
+            <!-- <h1>Mi sozdayom budushee</h1>
+            <button>Discover</button> -->
+            <div class="shadow">
+
+            </div>
+            <div class="text">
+                <h1>Build your future with us</h1>
+
+                <button><a href="{% url 'blog:blog_view' %}">start</a></button>
+            </div>
+    </div>
+</body>
+{% endblock %}
