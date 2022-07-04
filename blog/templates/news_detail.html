@@ -92,9 +92,9 @@
                 <br>
               <div class="sometext">
                 <h3>{{ news_detail.body }}</h3>
-
+             {% if user.is_superuser %}
                <p align="right"><a href="{% url 'blog:edit_news' news_detail.pk %}" type="button" class="btn btn-md btn-outline-secondary">Edit</a> <a href="{% url 'blog:delete_news' news_detail.pk %}" type="button" class="btn btn-md btn-outline-secondary">Delete</a></p>
-
+             {% endif %}
               </div>
 
             </div>

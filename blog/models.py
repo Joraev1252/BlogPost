@@ -86,9 +86,22 @@ class CommentModel(models.Model):
     # parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.post.title}-{self.author.email}"
+        return f"{self.post}-{self.author}"
 
     # def get_absolute_url(self):
     #     return reverse("account:home_page", args=[str(self.id)])
 
+    # def __str__(self):
+    #     return str(self.author.email)
 
+    # def get_absolute_url(self):
+    #     return reverse("account:home_page", args=[str(self.id)])
+# class CommentModel(models.Model):
+#     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comment', on_delete=models.SET_NULL, null=True)
+#     blog = models.ForeignKey(PagesModel, related_name='comment', on_delete=models.CASCADE)
+#     comment_text = models.TextField()
+#     date_created = models.DateTimeField(auto_now_add=True)
+#     date_updated = models.DateTimeField(auto_now=True)
+#
+#     def __str__(self):
+#         return f"{self.blog}-{self.author}"

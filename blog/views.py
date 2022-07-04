@@ -36,6 +36,8 @@ def blog_view(request):
     return render(request, 'blog_posts.html', context)
 
 
+
+
 @login_required
 def create_blog(request):
     context = {}
@@ -82,7 +84,7 @@ def edit_blog(request, pk):
 
     blog_post = get_object_or_404(BlogPostModel, pk=pk)
 
-    if blog_post.author != user.id:
+    if blog_post.author != user:
         return HttpResponse('You are not the author of that post.')
 
     if request.POST:
@@ -105,7 +107,6 @@ def edit_blog(request, pk):
     context['form'] = form
     return render(request, 'blog_edit.html', context)
 
-
 @login_required
 def delete_blog(request, pk):
     try:
@@ -124,11 +125,11 @@ def delete_blog(request, pk):
 def news_view(request):
     context = {}
     user = request.user
-    sidebar = Account.objects.filter(id=user.id)
-    blogs = NewsBlogModel.objects.filter(author=user.id)
 
-    data = NewsBlogModel.objects.filter(author=user.id)
-    paginator = Paginator(data, 3)
+    sidebar = Account.objects.filter(id=user.id)
+    blogs = NewsBlogModel.objects.all()
+
+    paginator = Paginator(blogs, 3)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -146,6 +147,9 @@ def create_news(request):
     user = request.user
     if not user.is_authenticated:
         return redirect("account:signin")
+
+    if not user.is_superuser:
+        return HttpResponse("Only an admin can create a post!")
 
     form = NewsBlogForm(request.POST or None, request.FILES or None)
 
@@ -187,6 +191,9 @@ def edit_news(request, pk):
     if not user.is_authenticated:
         return redirect('account:signin')
 
+    if not user.is_superuser:
+        return HttpResponse("Only an admin can edit a post!")
+
     blog_news = get_object_or_404(NewsBlogModel, pk=pk)
 
     if blog_news.author != user:
@@ -215,6 +222,11 @@ def edit_news(request, pk):
 
 @login_required
 def delete_news(request, pk):
+    user = request.user
+
+    if not user.is_superuser:
+        return HttpResponse("Only an admin can delete a post!")
+
     try:
         news = NewsBlogModel.objects.get(id=pk)
     except:
@@ -329,4 +341,3 @@ def post_comment(request, pk):
     context['sidebar'] = sidebar
 
     return render(request, "add_comment.html", context)
-

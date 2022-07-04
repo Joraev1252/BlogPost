@@ -78,8 +78,10 @@
               <br>
               <p></p>
               <p></p>
+        {% if user.is_superuser %}
           <p align="right"><a href="{% url 'blog:news_add' %}" type="button" class="btn btn-md btn-outline-secondary">Add</a></p>
-         <br/><br/>
+        {% endif %}
+              <br/><br/>
           </div>
       </div>
     </div>
