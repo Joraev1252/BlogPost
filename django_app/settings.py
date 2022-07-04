@@ -26,12 +26,13 @@ SECRET_KEY = 'django-insecure-*@1_!#y()ax4)ss7@2$mrubknk#60ngm-o9ov@==0bq67o8^a!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +53,7 @@ AUTH_USER_MODEL = 'account.Account'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     'django.middleware.locale.LocaleMiddleware',
