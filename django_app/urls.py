@@ -22,7 +22,7 @@ from django.urls import path, include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('marble/', include('account.urls')),
+    path('', include('account.urls')),
 
     path('api/v1/', include('blog.api.urls')),
     path('api/v1/', include('account.api.urls')),
